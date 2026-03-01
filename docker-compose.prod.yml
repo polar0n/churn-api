@@ -1,0 +1,16 @@
+services:
+  churn-api:
+    image: churn-api:v1.0
+    ports:
+      - "80:8000"
+    restart: always  # Ensure the API restarts if it crashes
+    environment:
+      - ENV=production
+      - LOG_LEVEL=INFO
+      # I added churn-api.com as an origin to assume that this will be the name of the API on Prod.
+      - CORS_ORIGINS=https://churn-api.com
+    deploy:
+      resources:
+        limits:
+          cpus: '0.50'
+          memory: 512M

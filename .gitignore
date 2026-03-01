@@ -1,0 +1,15 @@
+# Virtual environments
+.venv/
+venv/
+
+# Caches
+__pycache__/
+.pytest_cache/
+.mypy_cache/
+.coverage
+
+# Ignoring model files since they might be too large
+*.pkl
+
+# Logs
+*.log

@@ -1,0 +1,11 @@
+# Git
+.git
+.github/
+.gitignore
+
+# Python local caching
+.venv/
+__pycache__/
+.mypy_cache/
+*.pyc
+.pytest_cache/

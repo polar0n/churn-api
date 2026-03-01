@@ -1,0 +1,20 @@
+services:
+  churn-api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      # Serving port
+      - "8000:8000"
+      # VSCode debug attach port
+      - "5678:5678"
+    volumes:
+      - ./src:/app/src
+      - ./models:/app/models
+      - ./config:/app/config
+      - ./logs:/app/logs
+    environment:
+      - ENV=development
+      - LOG_LEVEL=DEBUG
+    # --reload for auto-reload after saving a file in dev.
+    command: ["python", "-m", "debugpy", "--listen", "0.0.0.0:5678", "-m", "uvicorn", "src.main:app", "--host", "0.0.0.0", "--port", "8000", "--reload", "--log-level", "debug"]

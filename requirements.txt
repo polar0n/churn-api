@@ -1,0 +1,26 @@
+# Core dependencies for model training and deployment
+pandas==3.0
+scikit-learn==1.8.0
+numpy==2.4.2
+
+# FastAPI and deployment
+fastapi==0.133.1
+uvicorn[standard]==0.41.0
+pydantic==2.12.5
+python-multipart==0.0.22
+
+# Testing
+pytest==9.0.2
+pytest-cov==7.0.0
+httpx==0.28.1
+debugpy==1.8.20
+
+# Code quality
+black==26.1.0
+flake8==7.3.0
+mypy==1.19.1
+pandas-stubs==3.0.0.260204
+scikit-learn-stubs==0.0.3
+
+# Security scanning (for CI/CD)
+safety==3.7.0
