@@ -45,4 +45,4 @@ jobs:
 
     - name: Check for security vulnerabilities
       run: |
-        safety check --file=requirements.txt
+        safety scan --file=requirements.txt
