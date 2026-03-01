@@ -83,11 +83,6 @@ app.add_middleware(
 )
 
 
-@app.get("/")
-async def root():
-    return {"message": "Hello World"}
-
-
 @app.get("/health")
 async def checkhealth():
     """Health probe endpoint."""
