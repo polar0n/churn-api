@@ -43,6 +43,8 @@ jobs:
       run: |
         pytest --cov=src
 
-    - name: Check for security vulnerabilities
-      run: |
-        safety scan --file=requirements.txt
+    - uses: actions/checkout@main
+    - name: Run Safety CLI to check for vulnerabilities
+      uses: pyupio/safety-action@v1
+      with:
+        api-key: ${{ secrets.SAFETY_API_KEY }}
