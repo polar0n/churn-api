@@ -1,10 +1,11 @@
 import os
 import logging
+from logging.handlers import RotatingFileHandler
 
 
 def setup_logger() -> logging.Logger:
     # Keep up to 5 logs of max size of 5 MB
-    file_handler = logging.handlers.RotatingFileHandler( # type: ignore
+    file_handler = RotatingFileHandler(
         filename="logs/main.log",
         maxBytes=5*1024**2,
         backupCount=5
