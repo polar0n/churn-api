@@ -57,11 +57,11 @@ sample_data = {
     "late_payments": 0,
 }
 
-incorrect_data = []
+incorrect_data: list[dict[str, str | int | float]] = []
 for catg in CATEGORICALS:
-    sample = sample_data[catg]
+    sample: str = sample_data[catg]     # type: ignore
     incorrect_data.extend(map(
-        lambda v: {catg: v},
+        lambda v: {catg: v},            # type: ignore
         [
             sample[0],
             sample * 2,
@@ -82,7 +82,7 @@ for catg in CATEGORICALS:
 
 for intg in INTS:
     incorrect_data.extend(map(
-        lambda v: {intg: v},
+        lambda v: {intg: v},            # type: ignore
         [
             -1,
             "",
@@ -93,7 +93,7 @@ for intg in INTS:
 
 for fltg in FLOATS:
     incorrect_data.extend(map(
-        lambda v: {fltg: v},
+        lambda v: {fltg: v},            # type: ignore
         [
             -1.0,
             "",

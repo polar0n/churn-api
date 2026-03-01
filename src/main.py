@@ -45,16 +45,16 @@ async def lifespan(app: FastAPI):
     # Pre-startup logic.
     model_path = None
     try:
-        model_path = Path(os.getenv("MODEL_PATH", None))
+        model_path = Path(os.getenv("MODEL_PATH", ""))
     except TypeError:
         log.error("Environment missing the MODEL_PATH variable.")
 
     try:
-        with open(model_path / "churn_model.pkl", "rb") as model_file:
+        with open(model_path / "churn_model.pkl", "rb") as model_file: # type: ignore
             model = pickle.load(model_file)
-        with open(model_path / "preprocessing.pkl", "rb") as prep_file:
+        with open(model_path / "preprocessing.pkl", "rb") as prep_file: # type: ignore
             preprocessing = pickle.load(prep_file)
-        with open(model_path / "metrics.pkl", "rb") as metrics_file:
+        with open(model_path / "metrics.pkl", "rb") as metrics_file: # type: ignore
             context["metrics"] = pickle.load(metrics_file)
         log.info(f"Model loaded from {model_path}.")
         context["model"] = model
@@ -117,13 +117,12 @@ async def predict_single(data: ChurnData) -> ChurnPrediction:
         df = pd.DataFrame([data.model_dump()])
         log.debug(f"Received data: {df.iloc[0]}.")
         result = context["predict"](df)
-        return {
+        return {    # type: ignore
             "prediction": result["prediction"],
             "probability": result["probability"][0]
         }
     except Exception as e:
-        log.error(f"Prediction error: {e}")
-        log.debug(e.with_traceback())
+        log.error(f"Prediction error", exc_info=True)
         raise HTTPException(
             status_code=500,
             detail="Internal Server Error"
@@ -137,8 +136,7 @@ async def predict_batch(data: list[ChurnData]) -> ChurnBatchPrediction:
         log.debug(f"Received data: {df}.")
         return context["predict"](df)
     except Exception as e:
-        log.error(f"Prediction error: {e}")
-        log.debug(e.with_traceback())
+        log.error(f"Prediction error", exc_info=True)
         raise HTTPException(
             status_code=500,
             detail="Internal Server Error"
