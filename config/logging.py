@@ -1,9 +1,11 @@
 import os
 import logging
 from logging.handlers import RotatingFileHandler
+from pathlib import Path
 
 
 def setup_logger() -> logging.Logger:
+    Path("logs/main.log").touch()
     # Keep up to 5 logs of max size of 5 MB
     file_handler = RotatingFileHandler(
         filename="logs/main.log",
