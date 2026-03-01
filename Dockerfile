@@ -42,6 +42,10 @@ EXPOSE 8000
 
 # Non-root user for security
 RUN useradd -m dev
+
+# Create logs directory and set permissions for the non-root user
+RUN mkdir -p /app/logs && chown -R dev:dev /app/logs
+
 USER dev
 
 
