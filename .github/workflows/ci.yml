@@ -1,11 +1,11 @@
 name: Continuous Integration
 
 on:
+  # Trigger only for pushes and PRs on main
   push:
-    branches:
-      - '**' # Trigger on pushes to any branch
+    branches: [ main ]
   pull_request:
-    branches: [ main ] # Trigger only for pull requests on main
+    branches: [ main ]
 
 jobs:
   test:
