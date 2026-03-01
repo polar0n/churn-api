@@ -5,9 +5,13 @@ from pathlib import Path
 
 
 def setup_logger() -> logging.Logger:
+    # Create logs directory if it doesn't exist
+    log_file_path = "logs/main.log"
+    os.makedirs(os.path.dirname(log_file_path), exist_ok=True)
+
     # Keep up to 5 logs of max size of 5 MB
     file_handler = RotatingFileHandler(
-        filename="logs/main.log",
+        filename=log_file_path,
         mode="a+",
         maxBytes=5*1024**2,
         backupCount=5
