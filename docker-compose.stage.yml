@@ -5,7 +5,7 @@ services:
       - "80:8000"
     restart: always  # Ensure the API restarts if it crashes
     environment:
-      - ENV=production
+      - ENV=staging
       - LOG_LEVEL=INFO
       - CORS_ORIGINS=http://0.0.0.0
     deploy:

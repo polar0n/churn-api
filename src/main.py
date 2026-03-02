@@ -16,8 +16,8 @@ log = setup_logger()
 context = {}
 
 
-def predict(df: pd.DataFrame, preprocessing: dict, model):
-    """Preprocess the received data."""
+def predict(df: pd.DataFrame, preprocessing: dict, model) -> dict[str, list[int]]:
+    """Preprocess the received data and return a prediction."""
     # Encode categorical variables
     for col in preprocessing["categorical_cols"]:
         le = preprocessing["label_encoders"][col]
